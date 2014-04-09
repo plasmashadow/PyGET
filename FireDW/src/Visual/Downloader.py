@@ -1,9 +1,11 @@
+
 import Tkinter as tk
+import ttk
 class Downloader:
     def __init__(self):
         self.window=tk.Tk()
         self.window.title("FireDW Downloader")
-        self.window.geometry('500x500')
+        self.window.geometry('500x600')
         ############adding components################
         self.menubar=tk.Menu(self.window)
         #########
@@ -22,13 +24,19 @@ class Downloader:
         #########
         self.lab=tk.Label(self.window,text="Enter the URl of the Link")
         self.lab.pack()
-        self.txt=tk.Entry(self.window,width=200)
+        self.txt=tk.Entry(self.window,width=800)
         self.txt.pack()
         ###############intitalising#####################
         
         ################################################
-        self.lab=tk.Label(self.window,text="In Active",bg='red',width=120)
+        ################################################
+        self.btn=tk.Button(self.window,text="Download")
+        self.btn.pack()
+        
+        self.lab=tk.Label(self.window,text="In Active",bg='red',width=720)
         self.lab.pack(side=tk.BOTTOM)
+        self.pbbar=ttk.Progressbar(self.window,length=1800)
+        self.pbbar.pack(side=tk.BOTTOM)
         self.window.mainloop()
     def ColorChange(self):
             self.lab.config(bg='green',text='Active')
