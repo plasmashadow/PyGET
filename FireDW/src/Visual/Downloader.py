@@ -5,7 +5,7 @@ class Downloader:
     def __init__(self):
         self.window=tk.Tk()
         self.window.title("FireDW Downloader")
-        self.window.geometry('500x600')
+        self.window.geometry('500x500')
         ############adding components################
         self.menubar=tk.Menu(self.window)
         #########
@@ -40,3 +40,6 @@ class Downloader:
         self.window.mainloop()
     def ColorChange(self):
             self.lab.config(bg='green',text='Active')
+    def SingleDownload(self):
+        url=self.txt.get()
+        #getting the content size
