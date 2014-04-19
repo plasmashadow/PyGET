@@ -2,6 +2,7 @@ import Tkinter as tk
 import ttk
 import urllib2
 import Visual.listdownload
+import time
 class Downloader:
     def __init__(self):
         #creating the download list
@@ -49,6 +50,8 @@ class Downloader:
             self.lab.config(bg='brown',text='Downloading In progress')
     def func(self):
         self.lab.config(bg='brown',text='Downloading In progress')
+        self.pbbar["value"]=0
+        time.sleep(1)
         self.url=self.txt.get()
         self.filename=self.url.split("/")[-1]
         self.u=urllib2.urlopen(self.url)
