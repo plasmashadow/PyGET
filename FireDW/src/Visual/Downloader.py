@@ -19,7 +19,7 @@ class Downloader:
         self.menubar.add_cascade(label="Download",menu=self.Dloadmenu)
         #########
         self.Aboutmenu=tk.Menu(self.menubar,tearoff=0)
-        self.Aboutmenu.add_command(label="About")
+        self.Aboutmenu.add_command(label="About",command=self.Create_about_frame)
         self.menubar.add_cascade(label="About",menu=self.Aboutmenu)
         ###########
         self.window.config(menu=self.menubar)
@@ -42,8 +42,9 @@ class Downloader:
         self.pbbar.pack(side=tk.BOTTOM)
         self.window.mainloop()
     def ColorChange(self):
-            self.lab.config(bg='green',text='Active')
+            self.lab.config(bg='brown',text='Downloading In progress')
     def func(self):
+        self.lab.config(bg='brown',text='Downloading In progress')
         self.url=self.txt.get()
         self.filename=self.url.split("/")[-1]
         self.u=urllib2.urlopen(self.url)
@@ -55,7 +56,7 @@ class Downloader:
         self.paint_progress()
 
     def paint_progress(self):
-         block_sz = 8192
+         block_sz = 1024
          buffer =self.u.read(block_sz)
          if not buffer:
              exit
@@ -63,9 +64,16 @@ class Downloader:
          self.f.write(buffer)         
          if(self.file_size_dl<self.file_size):
              self.pbbar["value"] +=block_sz
-             self.window.after(10, self.paint_progress)
+             self.window.after(1, self.paint_progress)
          if(self.file_size_dl>=self.file_size):
+             self.pbbar["value"]=self.file_size
              self.lab.config(bg='green',text='Download Complete')
-        
-        
-
+    def Create_about_frame(self):
+        root=tk.Tk()
+        root.title("About")
+        root.geometry('300x100')
+        label=tk.Label(root,text="Fire Downloader \n Author: Plasmashadow(Sathya Narrayanan)")
+        label.pack()
+        label11=tk.Label(root,text="License: GPL (General public licence)\n Source Code is Available on \n http:\\\github.com\plasmashadow\PyGET")
+        label11.pack()
+        root.mainloop()
