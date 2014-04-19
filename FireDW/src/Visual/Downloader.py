@@ -1,8 +1,10 @@
 import Tkinter as tk
 import ttk
 import urllib2
+import Visual.listdownload
 class Downloader:
     def __init__(self):
+        #creating the download list
         self.bytes=0
         self.file_size_dl=0
         self.window=tk.Tk()
@@ -13,7 +15,7 @@ class Downloader:
         #########
         self.Dloadmenu=tk.Menu(self.menubar,tearoff=0)
         self.Dloadmenu.add_command(label="Single Download",command=self.ColorChange)
-        self.Dloadmenu.add_command(label="List Download")
+        self.Dloadmenu.add_command(label="List Download",command=self.list_dload)
         self.Dloadmenu.add_separator()
         self.Dloadmenu.add_command(label="Exit",command=self.window.quit)
         self.menubar.add_cascade(label="Download",menu=self.Dloadmenu)
@@ -34,7 +36,9 @@ class Downloader:
         ################################################
         self.btn=tk.Button(self.window,text="Download",command=self.func)
         self.btn.pack()
+        #################code to be inserted#######################
         
+        ###########################################################
         self.lab=tk.Label(self.window,text="In Active",bg='red',width=720)
         self.lab.pack(side=tk.BOTTOM)
         self.pbbar=ttk.Progressbar(self.window,length=1800,orient="horizontal",mode="determinate")
@@ -77,3 +81,5 @@ class Downloader:
         label11=tk.Label(root,text="License: GPL (General public licence)\n Source Code is Available on \n http:\\\github.com\plasmashadow\PyGET")
         label11.pack()
         root.mainloop()
+    def list_dload(self):
+        d=Visual.listdownload()
